@@ -1,5 +1,6 @@
 import { screenWidth } from "./Scaling";
 
+
 export enum Colors {
     primary = '#AF1125',
     white = '#fff',
