@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { FC, useEffect } from 'react'
 import { navigate } from '../utils/NavigationUtils'
 import { Colors, Fonts, lightColors } from '../utils/Constants'
@@ -6,13 +6,13 @@ import { screenHeight, screenWidth } from '../utils/Scaling'
 import LinearGradient from "react-native-linear-gradient"
 import CustomText from '../components/global/CustomText'
 import LottieView from 'lottie-react-native';
-import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import Animated,{ useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 const bottomColor = [...lightColors].reverse()
 const SplashScreen:FC= () => {
 
   // initially at the very bottom
-  const baymaxAnimation = useSharedValue(80);
+  const baymaxAnimation = useSharedValue(screenHeight*0.8);
   const messageAnimation = useSharedValue(screenHeight*0.8);
 
   const launchAnimation = async() => {
@@ -26,8 +26,7 @@ const SplashScreen:FC= () => {
   const animateImageStyle = useAnimatedStyle(()=>{
     return {
       transform:[{
-        // translateY: withTiming(baymaxAnimation.value, {duration:1500}),
-        translateY: baymaxAnimation.value,
+        translateY: withTiming(baymaxAnimation.value, {duration:1500}),
        
       }]
     }
@@ -41,19 +40,15 @@ const SplashScreen:FC= () => {
       }]
     }
   })
-
-  useEffect(() => {
-    console.log("value",baymaxAnimation.value);    
-  }, [baymaxAnimation.value]);
   
   useEffect(()=>{
-    // launchAnimation();
+    launchAnimation();
   },[])
 
   return (
     <View style={style.container}>
-      <Animated.View style={[style.imgContainer,]}>
-        <Image source={require("../assets/images/launch.png")} style={[style.img,animateImageStyle]}/>
+      <Animated.View style={[style.imgContainer,animateImageStyle]}>
+        <Image source={require("../assets/images/launch.png")} style={[style.img,]}/>
       </Animated.View>
 
       <Animated.View style={[style.gradientContainer,messageContainerStyle]}>
