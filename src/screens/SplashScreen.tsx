@@ -1,12 +1,14 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { FC, useEffect } from 'react'
-import { navigate } from '../utils/NavigationUtils'
+import { navigate, resetAndNavigate } from '../utils/NavigationUtils'
 import { Colors, Fonts, lightColors } from '../utils/Constants'
 import { screenHeight, screenWidth } from '../utils/Scaling'
 import LinearGradient from "react-native-linear-gradient"
 import CustomText from '../components/global/CustomText'
 import LottieView from 'lottie-react-native';
 import Animated,{ useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { initializeTtsListners } from '../utils/ttsListners'
+import Tts from 'react-native-tts'
 
 const bottomColor = [...lightColors].reverse()
 const SplashScreen:FC= () => {
@@ -19,7 +21,12 @@ const SplashScreen:FC= () => {
     messageAnimation.value = screenHeight*0.001;
     setTimeout(()=>{
       baymaxAnimation.value = -screenHeight*0.02;
+      Tts.speak("Hello World! I am Baymax.")
     },600)
+
+    setTimeout(()=>{
+      resetAndNavigate("BaymaxScreen")
+    },4000)
   }
 
   // transform baymax
@@ -42,6 +49,7 @@ const SplashScreen:FC= () => {
   })
   
   useEffect(()=>{
+    initializeTtsListners();
     launchAnimation();
   },[])
 
