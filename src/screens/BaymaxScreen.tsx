@@ -29,7 +29,7 @@ const BaymaxScreen = () => {
   }
 
   useEffect(()=>{
-    const timer = setTimeout(startBlur,500)
+    const timer = setTimeout(startBlur,100)
     return ()=> clearTimeout(timer)
   },[])
 

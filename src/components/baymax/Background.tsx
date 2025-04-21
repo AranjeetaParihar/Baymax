@@ -12,7 +12,7 @@ const Background:FC<{blurOpacity:Animated.Value}>=({blurOpacity}) =>{
             <BlurView 
             style={styles.absoluteStyle}
             blurType='light'
-            blurAmount={2}
+            blurAmount={4}
             />
         </Animated.View>
     </View>
