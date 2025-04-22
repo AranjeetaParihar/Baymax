@@ -37,8 +37,8 @@ const BigHero6: FC<{ onPress: (type: string) => void }> = ({ onPress }) => {
           })
           return (
             <Animated.View key={index} style={[styles.item, { transform: [{ translateX }, { translateY }] }]}>
-              {item !== "water" && <Water/>}
-              {item === "water" && <Text>else</Text>}
+              {item !== "water" && <Text>else</Text>}
+              {item === "water" && <Water/>}
             </Animated.View>
           )
         })

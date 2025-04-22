@@ -1,28 +1,28 @@
 import Tts from "react-native-tts"
 
-export const initializeTtsListners = async() => {
+export const initializeTtsListners = async () => {
     Tts.getInitStatus().then(
-        ()=>{
+        () => {
             console.log("ALL OK TTS");
         },
-        (error)=>{
-        if (error.code === 'no_engine') {
-            console.log('NO ENGINE TTS');
-            Tts.requestInstallEngine();
+        (error) => {
+            if (error.code === 'no_engine') {
+                console.log('NO ENGINE TTS');
+                Tts.requestInstallEngine();
+            }
         }
-    }
     )
 
     // const voices = await Tts.voices();
     // console.log(voices);
     // Tts.setDefaultVoice('com.apple.speech.synthesis.voice.Albert')
 
-    Tts.setDefaultRate(0.3,true)
+    Tts.setDefaultRate(0.3, true)
     Tts.setIgnoreSilentSwitch("ignore")
     Tts.setDefaultPitch(0.7)
 
     // Listener for when TTS starts speaking
-    Tts.addEventListener("tts-start",(event)=>{
+    Tts.addEventListener("tts-start", (event) => {
         // console.log("TTS Started: ",event);
     })
 
@@ -40,4 +40,19 @@ export const initializeTtsListners = async() => {
     Tts.addEventListener('tts-cancel', (event) => {
         // console.log('TTS Cancel: ', event);
     });
+}
+
+export const playTts = async (message: string) => {
+    Tts.getInitStatus().then(
+        () => {
+            console.log("ALL OK TTS");
+        },
+        (error) => {
+            if (error.code === 'no_engine') {
+                console.log('NO ENGINE TTS');
+                Tts.requestInstallEngine();
+            }
+        }
+    )
+    Tts.speak(message)
 }
