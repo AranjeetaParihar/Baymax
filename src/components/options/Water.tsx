@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { useWaterStore } from '../../state/waterStore'
 import { playTts } from '../../utils/ttsListners'
+import { playSound } from '../../utils/voiceUtils'
 
 const Water = () => {
 
@@ -19,6 +20,7 @@ const Water = () => {
 
     const handlePress = () => { 
         if(completeSegments<totalSegments){
+            playSound("ting2")
             const timestamp = new Date().toISOString()
             addWaterIntake(timestamp)
         }else{
