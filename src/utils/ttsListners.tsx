@@ -15,9 +15,9 @@ export const initializeTtsListners = async () => {
 
     // const voices = await Tts.voices();
     // console.log(voices);
-    // Tts.setDefaultVoice('com.apple.speech.synthesis.voice.Albert')
+    Tts.setDefaultVoice('com.apple.speech.synthesis.voice.Albert')
 
-    Tts.setDefaultRate(0.3, true)
+    Tts.setDefaultRate(0.9, true)
     Tts.setIgnoreSilentSwitch("ignore")
     Tts.setDefaultPitch(0.7)
 
