@@ -1,0 +1,1 @@
+export const GEMINI_API_KEY = "AIzaSyA1R3kZxViCNdS3G2526QWoqjDZyWgbepU"
