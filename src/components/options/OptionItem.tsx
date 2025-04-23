@@ -33,8 +33,8 @@ const OptionItem: FC<{ item: any; onPress: (type: string) => void }> = ({ item, 
     }
 
     return (
-        <TouchableOpacity style={styles.container}>
-            <Icon name={iconName} color={iconColor} size={RFValue(25)}/>
+        <TouchableOpacity style={styles.container} onPress={() => onPress(item)}>
+            <Icon name={iconName} color={iconColor} size={RFValue(25)} />
         </TouchableOpacity>
     )
 }

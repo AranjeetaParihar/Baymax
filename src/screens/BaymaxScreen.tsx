@@ -8,6 +8,8 @@ import { playTts } from '../utils/ttsListners'
 import SoundPlayer from 'react-native-sound-player'
 import { prompt } from '../utils/data'
 import { playSound } from '../utils/voiceUtils'
+import Pedometer from '../components/pedometer/Pedometer'
+import Instructions from '../components/baymax/Instructions'
 
 const BaymaxScreen = () => {
 
@@ -43,14 +45,26 @@ const BaymaxScreen = () => {
   }
 
   const handleResponse = async (type: string, promptText: string, sound: string) => {
+    setShowLoader(true)
+    console.log("49...");
+
     try {
       if (type === "meditation") {
         playTts("Focus on breathing.")
         playSound(sound)
-        setMessage("mediation")
+        setMessage("meditation")
         return
       }
-      setShowLoader(true)
+      if (type === "happiness") {
+        console.log("57...");
+        setTimeout(() => {
+          playSound(sound)
+        }, 5000)
+      } else {
+        playSound(sound)
+      }
+      setMessage(type)
+      stopBlur()
     } catch (error: any) {
       handleError(error)
     } finally {
@@ -64,6 +78,8 @@ const BaymaxScreen = () => {
   }, [])
 
   const onOptionPressHandler = (type: string) => {
+    console.log("78...", type);
+
     setShowInstruction(true)
     if (type === "pedometer") {
       setShowPedometer(true)
@@ -90,6 +106,31 @@ const BaymaxScreen = () => {
 
   return (
     <View style={styles.container}>
+
+      {message &&
+        <Instructions onCross={() => {
+          startBlur();
+          setMessage('')
+          setShowLoader(true)
+          SoundPlayer.stop();
+          setShowInstruction(false)
+        }} message={message} />
+      }
+
+      {showPedometer &&
+        <Pedometer
+        // onCross={() => {
+        //   startBlur();
+        //   setMessage('')
+        //   setShowLoader(true)
+        //   setShowPedometer(false)
+        //   SoundPlayer.stop();
+        //   setShowInstruction(false)
+        // }} 
+        // message={message} 
+        />
+      }
+
       {showLoader &&
         <View style={styles.loadingContainer}>
           <Loader />
