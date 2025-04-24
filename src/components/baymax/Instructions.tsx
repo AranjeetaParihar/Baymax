@@ -3,14 +3,13 @@ import React, {FC} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {RFValue} from 'react-native-responsive-fontsize';
 import LottieView from 'lottie-react-native';
-import {Markdown} from 'react-native-markdown-display';
+import Markdown from 'react-native-markdown-display';
 import { Fonts } from '../../utils/Constants';
 
 const Instructions: FC<{message: string, onCross: () => void}> = ({
   message,
   onCross,
 }) => {
-    console.log("13...",message);
     
   return (
     <View style={styles.container}>

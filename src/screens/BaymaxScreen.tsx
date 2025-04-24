@@ -11,7 +11,6 @@ import { playSound } from '../utils/voiceUtils'
 import Pedometer from '../components/pedometer/Pedometer'
 import Instructions from '../components/baymax/Instructions'
 import { askAI } from '../service/apiService'
-
 const BaymaxScreen = () => {
 
   const [showInstruction, setShowInstruction] = useState(false);
@@ -78,7 +77,6 @@ const BaymaxScreen = () => {
   }, [])
 
   const onOptionPressHandler = (type: string) => {
-    console.log("78...", type);
 
     setShowInstruction(true)
     if (type === "pedometer") {
