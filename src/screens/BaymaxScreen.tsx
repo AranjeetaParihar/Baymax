@@ -10,7 +10,7 @@ import { prompt } from '../utils/data'
 import { playSound } from '../utils/voiceUtils'
 import Pedometer from '../components/pedometer/Pedometer'
 import Instructions from '../components/baymax/Instructions'
-
+import { askAI } from '../service/apiService'
 const BaymaxScreen = () => {
 
   const [showInstruction, setShowInstruction] = useState(false);
@@ -46,8 +46,6 @@ const BaymaxScreen = () => {
 
   const handleResponse = async (type: string, promptText: string, sound: string) => {
     setShowLoader(true)
-    console.log("49...");
-
     try {
       if (type === "meditation") {
         playTts("Focus on breathing.")
@@ -55,15 +53,16 @@ const BaymaxScreen = () => {
         setMessage("meditation")
         return
       }
+      const data = await askAI(promptText)
+      setMessage(data)
+      playTts(data)
       if (type === "happiness") {
-        console.log("57...");
         setTimeout(() => {
           playSound(sound)
         }, 5000)
       } else {
         playSound(sound)
       }
-      setMessage(type)
       stopBlur()
     } catch (error: any) {
       handleError(error)
@@ -78,7 +77,6 @@ const BaymaxScreen = () => {
   }, [])
 
   const onOptionPressHandler = (type: string) => {
-    console.log("78...", type);
 
     setShowInstruction(true)
     if (type === "pedometer") {
