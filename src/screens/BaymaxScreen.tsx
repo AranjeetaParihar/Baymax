@@ -117,15 +117,15 @@ const BaymaxScreen = () => {
 
       {showPedometer &&
         <Pedometer
-        // onCross={() => {
-        //   startBlur();
-        //   setMessage('')
-        //   setShowLoader(true)
-        //   setShowPedometer(false)
-        //   SoundPlayer.stop();
-        //   setShowInstruction(false)
-        // }} 
-        // message={message} 
+        onCross={() => {
+          startBlur();
+          setMessage('')
+          setShowLoader(true)
+          setShowPedometer(false)
+          SoundPlayer.stop();
+          setShowInstruction(false)
+        }} 
+        message={message} 
         />
       }
 

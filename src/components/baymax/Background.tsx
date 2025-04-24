@@ -10,6 +10,7 @@ const Background:FC<{blurOpacity:Animated.Value}>=({blurOpacity}) =>{
         <Image style={styles.image} source={require("../../assets/images/baymax.png")}/>
         <Animated.View style={[styles.absoluteStyle,{opacity:blurOpacity}]}>
             <BlurView 
+            reducedTransparencyFallbackColor='white'
             style={styles.absoluteStyle}
             blurType='light'
             blurAmount={4}
