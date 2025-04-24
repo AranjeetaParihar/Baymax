@@ -57,7 +57,7 @@ const CustomText:React.FC<Props> = ({
   }
   return (
     <View>
-      <Text style={{
+      <Text style={{...style,
         color:Colors.text, 
         fontSize:computedFontSize, 
         fontFamily:fontFamily
