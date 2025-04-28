@@ -65,7 +65,7 @@ const Pedometer:FC<{message:string,onCross:()=>void}> = ({message,onCross}) => {
         titleFontSize={22}
         titleStyle={{fontFamily:Fonts.SemiBold}}/>
         <CustomText fontSize={RFValue(8)} fontFamily={Fonts.SemiBold} style={styles.textStyle}>
-          Start walking, the counter will start automatically.
+          Start walking, the pedometer will start automatically.
         </CustomText>
       </View>
     </View>
