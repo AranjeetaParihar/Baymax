@@ -49,6 +49,8 @@ const SplashScreen:FC= () => {
   })
   
   useEffect(()=>{
+    console.log("52...");
+    
     initializeTtsListners();
     launchAnimation();
   },[])
